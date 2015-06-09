@@ -1,83 +1,110 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="<%= scriptAppName %>">
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title><%= scriptAppName %></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <% if (bootstrap) { %>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <% } %>
-            <a class="navbar-brand" href="#/"><%= appname %></a>
-          </div>
-          <% if (bootstrap) { %>
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-          <% } else { %>
-          <div class="collapse">
-          <% } %>
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="<% if (ngRoute) { %>#/about<% } else { %>#/<% } %>">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+		<!-- build:css(.) styles/vendor.css -->
+		<!-- bower:css -->
+		<!-- endbower -->
+		<!-- endbuild -->
+		<!-- build:css(.tmp) styles/main.css -->
+		<link rel="stylesheet" href="styles/main.css">
+		<!-- endbuild -->
+	</head>
+	<body ng-app="<%= scriptAppName %>">
+		<div class="page-wrapper">
+			<spinner-overlay></spinner-overlay>
 
-    <div class="container">
-    <% if (ngRoute) {
-      %><div ng-view></div><%
-    } else {
-      %><div ng-include="'views/main.html'" ng-controller="MainCtrl"></div><%
-    } %>
-    </div>
+			<nav class="navbar navbar-default navbar-static-top" role="navigation">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
 
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
+						<a class="navbar-brand" href="/" tabindex="-1"><%= scriptAppName %></a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="top-navbar">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="" tabindex="-1">Pricing Features</a></li>
+							<li><a href="" tabindex="-1">Service Features</a></li>
+							<li><a href="" tabindex="-1">Charging Products</a></li>
+							<li><a href="" tabindex="-1">Rules Library</a></li>
+						</ul>
+
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="" tabindex="-1">Search</a></li>
+							<li class="dropdown">
+								<a href="" class="dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+									User <span class="caret"></span>
+								</a>
+
+								<ul class="dropdown-menu" role="menu">
+									<li role="menuitem"><a href="" tabindex="-1">Action</a></li>
+									<li role="menuitem"><a href="" tabindex="-1">Another action</a></li>
+									<li role="menuitem"><a href="" tabindex="-1">Something else here</a></li>
+									<li role="menuitem" class="divider"></li>
+									<li role="menuitem"><a href="" tabindex="-1">Separated link</a></li>
+								</ul>
+							</li>
+						</ul>
+
+						<form class="navbar-form navbar-right" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Search" tabindex="-1">
+							</div>
+						</form>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
+
+			<div class="navbar navbar-default statusbar affix-top">
+				<div class="container-fluid">
+					<h1 class="page-header" route-label></h1>
+				</div>
+			</div>
 
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			<div class="container-fluid container-main wrap">
+				<ui-view autoscroll="true"></ui-view>
+			</div>
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
+			<!-- /page wrapper -->
+		</div>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- endbuild -->
-  </body>
+
+		<footer class="navbar navbar-default navbar-static-bottom footer">
+			<div class="container-fluid">
+				<ul class="navbar-header">
+					<li><a href="" tabindex="-1">Help</a></li>
+					<li><a href="" tabindex="-1">Support</a></li>
+					<li><a href="" tabindex="-1">Feedback</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<!-- build:js(.) scripts/vendor.js -->
+		<!-- bower:js -->
+		<!-- endbower -->
+		<!-- endbuild -->
+	</body>
 </html>
