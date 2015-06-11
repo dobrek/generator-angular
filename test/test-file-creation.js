@@ -12,7 +12,7 @@ describe('Angular generator file creation', function () {
     'app/favicon.ico',
     'app/robots.txt',
     'app/styles/main.scss',
-    'app/views/main.html',
+    'app/views/main.tpl.html',
     'app/index.html',
     '.bowerrc',
     '.editorconfig',

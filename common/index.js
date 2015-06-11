@@ -32,6 +32,6 @@ Generator.prototype.setupEnv = function setupEnv() {
   copy('404.html');
   copy('favicon.ico');
   copy('robots.txt');
-  copy('views/main.html');
+  copy('views/main.tpl.html');
   this.directory(join('app', 'images'), join(appPath, 'images'));
 };

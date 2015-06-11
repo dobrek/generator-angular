@@ -25,11 +25,11 @@ util.inherits(Generator, yeoman.generators.NamedBase);
 
 Generator.prototype.createViewFiles = function createViewFiles() {
   this.template(
-    'app/views/view.html',
+    'app/views/view.tpl.html',
     path.join(
       this.env.options.appPath,
       'views',
-      this.name.toLowerCase() + '.html'
+      this.name.toLowerCase() + '.tpl.html'
     )
   );
 };

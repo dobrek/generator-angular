@@ -13,7 +13,7 @@ describe('Angular generator appPath option', function () {
     appPath + '/favicon.ico',
     appPath + '/robots.txt',
     appPath + '/styles/main.scss',
-    appPath + '/views/main.html',
+    appPath + '/views/main.tpl.html',
     appPath + '/index.html',
     '.bowerrc',
     '.editorconfig',
