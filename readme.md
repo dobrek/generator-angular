@@ -22,9 +22,9 @@ Make a new directory, and `cd` into it:
 mkdir my-new-project && cd $_
 ```
 
-Run `yo angular`, optionally passing an app name:
+Run `yo tecnotree-angular`, optionally passing an app name:
 ```
-yo angular [app-name]
+yo tecnotree-angular [app-name]
 ```
 
 Run `grunt` for building and `grunt serve` for preview
@@ -269,7 +269,7 @@ This will cause Yeoman-generated client-side files to be placed in `public`.
 
 Note that you can also achieve the same results by adding an `--appPath` option when starting generator:
 ```bash
-yo angular [app-name] --appPath=public
+yo tecnotree-angular [app-name] --appPath=public
 ```
 
 ## Testing
@@ -295,3 +295,47 @@ Recent changes can be viewed on Github on the [Releases Page](https://github.com
 ## License
 
 [BSD license](http://opensource.org/licenses/bsd-license.php)
+
+
+## How to setup new Web based project with Angular and TT UI Lib in less than 10 steps
+
+1. Install Node.js using the instruction on [https://nodejs.org/](https://nodejs.org/)
+
+2. Run terminal and check if both commands works:
+   ```
+   node --version
+   npm --version
+   ```
+
+3. Install Yeoman ([http://yeoman.io/](http://yeoman.io/)), Grunt (http://gruntjs.com/) and Bower ([http://bower.io/](http://bower.io/)) tools:
+   ```
+   npm install -g bower grunt-cli yo
+   ```
+
+4. Check if all tools are working:
+   ```
+   bower --version
+   yo --version
+   grunt --version
+   ```
+
+5. Install Angular Generator with TT UI Lib
+   ```
+   npm install https://github.com/dobrek/generator-tecnotree-angular.git
+   ```
+
+6. Create directory for your new project and run setup
+   ```
+   mkdir my-new-project && cd my-new-project
+   yo tecnotree-angular MyNewProject
+   ```
+
+7. For first three question choose **"Y"** and **un-check** all additional angular modules using spacebar.
+Wait for the installation to finish. Can take 5+ minutes.
+
+8. Run project using command
+   ```
+   grunt serve
+   ```
+
+9. After `Waiting...` text appears in terminal open Web Browser and navigate to [http://localhost:9000/](http://localhost:9000/)

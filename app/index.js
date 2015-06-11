@@ -129,7 +129,7 @@ Generator.prototype.welcome = function welcome() {
   if (this.options.minsafe) {
     this.log.error(
       'The --minsafe flag has been removed. For more information, see' +
-      '\nhttps://github.com/yeoman/generator-angular#minification-safe.' +
+      '\nhttps://github.com/dobrek/generator-tecnotree-angular#minification-safe.' +
       '\n'
     );
   }

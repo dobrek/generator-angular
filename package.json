@@ -32,7 +32,7 @@
     "script-base.js",
     "util.js"
   ],
-  "repository": "dobrek/generator-angular",
+  "repository": "dobrek/generator-tecnotree-angular",
   "scripts": {
     "test": "mocha"
   },

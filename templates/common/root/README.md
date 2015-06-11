@@ -1,6 +1,6 @@
 # <%= _.slugify(_.humanize(appname)) %>
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+This project is generated with [yo tecnotree-angular generator](https://github.com/dobrek/generator-tecnotree-angular)
 version <%= pkg.version %>.
 
 ## Build & development

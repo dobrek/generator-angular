@@ -32,7 +32,7 @@ module.exports = function (grunt) {
         commitMessage: 'chore(release): Release version <%= version %>',
         tagName: 'v<%= version %>',
         github: {
-          repo: 'yeoman/generator-angular',
+          repo: 'dobrek/generator-tecnotree-angular',
           usernameVar: 'GITHUB_USERNAME',
           passwordVar: 'GITHUB_AUTHTOKEN'
         }
