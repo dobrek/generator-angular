@@ -30,7 +30,7 @@ describe('Angular generator route', function () {
         done(err);
       }
       angular = helpers.createGenerator(
-        'angular:app',
+        'tecnotree-angular:app',
         [
           '../../../app',
           '../../../common',
@@ -46,7 +46,7 @@ describe('Angular generator route', function () {
       helpers.mockPrompt(angular, mockPrompts);
       angular.run({}, function () {
         angular = helpers.createGenerator(
-          'angular:route',
+          'tecnotree-angular:route',
           [
             '../../../controller',
             '../../../route',

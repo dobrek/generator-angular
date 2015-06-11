@@ -56,15 +56,15 @@ var Generator = module.exports = function Generator(args, options) {
     this.env.options.coffee = this.options.coffee;
   }
 
-  this.hookFor('angular:common', {
+  this.hookFor('tecnotree-angular:common', {
     args: args
   });
 
-  this.hookFor('angular:main', {
+  this.hookFor('tecnotree-angular:main', {
     args: args
   });
 
-  this.hookFor('angular:controller', {
+  this.hookFor('tecnotree-angular:controller', {
     args: args
   });
 
@@ -103,7 +103,7 @@ var Generator = module.exports = function Generator(args, options) {
     });
 
     if (this.env.options.ngRoute) {
-      this.invoke('angular:route', {
+      this.invoke('tecnotree-angular:route', {
         args: ['about']
       });
     }

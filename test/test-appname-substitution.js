@@ -20,7 +20,7 @@ describe('Angular generator template', function () {
         done(err);
       }
 
-      angular = helpers.createGenerator('angular:app', deps, [appName], {
+      angular = helpers.createGenerator('tecnotree-angular:app', deps, [appName], {
         'appPath': 'app',
         'skip-welcome-message': true,
         'skip-install': true,

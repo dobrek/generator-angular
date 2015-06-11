@@ -34,25 +34,25 @@ Run `grunt` for building and `grunt serve` for preview
 
 Available generators:
 
-* [angular](#app) (aka [angular:app](#app))
-* [angular:controller](#controller)
-* [angular:directive](#directive)
-* [angular:filter](#filter)
-* [angular:route](#route)
-* [angular:service](#service)
-* [angular:provider](#service)
-* [angular:factory](#service)
-* [angular:value](#service)
-* [angular:constant](#service)
-* [angular:decorator](#decorator)
-* [angular:view](#view)
+* [tecnotree-angular](#app) (aka [tecnotree-angular:app](#app))
+* [tecnotree-angular:controller](#controller)
+* [tecnotree-angular:directive](#directive)
+* [tecnotree-angular:filter](#filter)
+* [tecnotree-angular:route](#route)
+* [tecnotree-angular:service](#service)
+* [tecnotree-angular:provider](#service)
+* [tecnotree-angular:factory](#service)
+* [tecnotree-angular:value](#service)
+* [tecnotree-angular:constant](#service)
+* [tecnotree-angular:decorator](#decorator)
+* [tecnotree-angular:view](#view)
 
 ### App
 Sets up a new AngularJS app, generating all the boilerplate you need to get started. The app generator also optionally installs Bootstrap and additional AngularJS modules, such as angular-resource (installed by default).
 
 Example:
 ```bash
-yo angular
+yo tecnotree-angular
 ```
 
 ### Route
@@ -60,7 +60,7 @@ Generates a controller and view, and configures a route in `app/scripts/app.js` 
 
 Example:
 ```bash
-yo angular:route myroute
+yo tecnotree-angular:route myroute
 ```
 
 Produces `app/scripts/controllers/myroute.js`:
@@ -79,7 +79,7 @@ Produces `app/views/myroute.html`:
 
 Example:
 ```bash
-yo angular:route myRoute --uri=my/route
+yo tecnotree-angular:route myRoute --uri=my/route
 ```
 
 Produces controller and view as above and adds a route to `app/scripts/app.js`
@@ -90,7 +90,7 @@ Generates a controller in `app/scripts/controllers`.
 
 Example:
 ```bash
-yo angular:controller user
+yo tecnotree-angular:controller user
 ```
 
 Produces `app/scripts/controllers/user.js`:
@@ -104,7 +104,7 @@ Generates a directive in `app/scripts/directives`.
 
 Example:
 ```bash
-yo angular:directive myDirective
+yo tecnotree-angular:directive myDirective
 ```
 
 Produces `app/scripts/directives/myDirective.js`:
@@ -125,7 +125,7 @@ Generates a filter in `app/scripts/filters`.
 
 Example:
 ```bash
-yo angular:filter myFilter
+yo tecnotree-angular:filter myFilter
 ```
 
 Produces `app/scripts/filters/myFilter.js`:
@@ -142,7 +142,7 @@ Generates an HTML view file in `app/views`.
 
 Example:
 ```bash
-yo angular:view user
+yo tecnotree-angular:view user
 ```
 
 Produces `app/views/user.html`:
@@ -155,7 +155,7 @@ Generates an AngularJS service.
 
 Example:
 ```bash
-yo angular:service myService
+yo tecnotree-angular:service myService
 ```
 
 Produces `app/scripts/services/myService.js`:
@@ -165,14 +165,14 @@ angular.module('myMod').service('myService', function () {
 });
 ```
 
-You can also do `yo angular:factory`, `yo angular:provider`, `yo angular:value`, and `yo angular:constant` for other types of services.
+You can also do `yo tecnotree-angular:factory`, `yo tecnotree-angular:provider`, `yo tecnotree-angular:value`, and `yo tecnotree-angular:constant` for other types of services.
 
 ### Decorator
 Generates an AngularJS service decorator.
 
 Example:
 ```bash
-yo angular:decorator serviceName
+yo tecnotree-angular:decorator serviceName
 ```
 
 Produces `app/scripts/decorators/serviceNameDecorator.js`:
@@ -193,7 +193,7 @@ For generators that output scripts, the `--coffee` option will output CoffeeScri
 
 For example:
 ```bash
-yo angular:controller user --coffee
+yo tecnotree-angular:controller user --coffee
 ```
 
 Produces `app/scripts/controller/user.coffee`:
@@ -226,7 +226,7 @@ By default, new scripts are added to the index.html file. However, this may not 
 
 To skip adding them to the index, pass in the skip-add argument:
 ```bash
-yo angular:service serviceName --skip-add
+yo tecnotree-angular:service serviceName --skip-add
 ```
 
 ## Bower Components
@@ -236,7 +236,7 @@ The following packages are always installed by the [app](#app) generator:
 * angular
 * angular-mocks
 
-
+<!---
 The following additional modules are available as components on bower, and installable via `bower install`:
 
 * angular-animate
@@ -247,7 +247,7 @@ The following additional modules are available as components on bower, and insta
 * angular-sanitize
 
 All of these can be updated with `bower update` as new versions of AngularJS are released.
-
+-->
 `json3` and `es5-shim` have been removed as Angular 1.3 has dropped IE8 support and that is the last version that needed these shims. If you still require these, you can include them with: `bower install --save json3 es5-shim`. `wiredep` should add them to your index.html file but if not you can manually add them.
 
 ## Configuration
