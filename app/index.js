@@ -145,31 +145,11 @@ Generator.prototype.askForCompass = function askForCompass() {
     default: true
   }], function (props) {
     this.compass = props.compass;
-
-    cb();
-  }.bind(this));
-};
-
-Generator.prototype.askForBootstrap = function askForBootstrap() {
-  var compass = this.compass;
-  var cb = this.async();
-
-  this.prompt([{
-    type: 'confirm',
-    name: 'bootstrap',
-    message: 'Would you like to include Bootstrap?',
-    default: true
-  }, {
-    type: 'confirm',
-    name: 'compassBootstrap',
-    message: 'Would you like to use the Sass version of Bootstrap?',
-    default: true,
-    when: function (props) {
-      return props.bootstrap && compass;
-    }
-  }], function (props) {
-    this.bootstrap = props.bootstrap;
-    this.compassBootstrap = props.compassBootstrap;
+    
+    // Install Bootstrap by default
+    this.bootstrap = true;
+    // Install Sass version of Bootstrap 
+    this.compassBootstrap = props.compass;
 
     cb();
   }.bind(this));
