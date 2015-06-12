@@ -155,6 +155,41 @@ Generator.prototype.askForCompass = function askForCompass() {
   }.bind(this));
 };
 
+Generator.prototype.askForLanguages = function askForLanguages() {
+  var cb = this.async();
+
+  var prompts = [{
+    type: 'checkbox',
+    name: 'languages',
+    message: 'Which languages would you like to use?',
+    choices: [
+    {
+      value: 'en',
+      name: 'English',
+      checked: true
+    }, {
+      value: 'fr',
+      name: 'Français',
+      checked: false
+    }, {
+      value: 'pl',
+      name: 'Polski',
+      checked: false
+    }
+    ]
+  }];
+
+  this.prompt(prompts, function (props) {
+    this.availableLanguages = props.languages;
+
+    for (var i = this.availableLanguages.length - 1; i >= 0; i--) {
+        this.template('app/langs/_lang.json', 'app/langs/lang-'+ this.availableLanguages[i] +'.json');
+    };
+
+    cb();
+  }.bind(this));
+};
+
 Generator.prototype.readIndex = function readIndex() {
   this.ngRoute = this.env.options.ngRoute;
   this.indexFile = this.engine(this.read('app/index.html'), this);
