@@ -19,6 +19,6 @@ define([
 		LOCALE_PREFIX: 'locale-',
 		LOCALE_SUFFIX: '.json',
 		LOCALE_DEFAULT: '<%= defaultLang %>',
-		LOCALE_LIST:    [<% langs.forEach(function (item, idx) { if (idx!=0) {%>,<%}%>'<%= item %>'<% }); %>]
+		LOCALE_LIST:    [<% langs.forEach(function (item, idx) { if (idx!=0) {%>,<%}%><%= item %>:{lang:'<%= item %>'}<% }); %>]
 	});
 });
