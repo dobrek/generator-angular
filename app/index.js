@@ -8,6 +8,20 @@ var yosay = require('yosay');
 var wiredep = require('wiredep');
 var chalk = require('chalk');
 
+// Should contain at least one language definition.
+var LANGUAGES = [
+  {
+    value: 'en',
+    name: 'English',
+    default: true
+  }, {
+    value: 'fr',
+    name: 'Français'
+  }, {
+    value: 'pl',
+    name: 'Polski'
+  }];
+
 var Generator = module.exports = function Generator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
   this.argument('appname', { type: String, required: false });
@@ -54,6 +68,28 @@ var Generator = module.exports = function Generator(args, options) {
     }
 
     this.env.options.coffee = this.options.coffee;
+  }
+
+  if (typeof this.env.options.defaultLang === 'undefined') {
+    this.option('defaultLang', {
+      desc: 'Default UI language',
+      type: String
+    });
+
+    if (this.options.defaultLang && this.options.defaultLang.length > 0){
+      this.env.options.defaultLang = this.options.defaultLang;
+    }
+  }
+
+  if (typeof this.env.options.langs === 'undefined') {
+    this.option('langs', {
+      desc: 'Available languages',
+      type: String
+    });
+
+    if (this.options.langs && this.options.langs.length > 0){
+      this.env.options.langs = this.options.langs.split(',');
+    }
   }
 
   this.hookFor('tecnotree-angular:common', {
@@ -158,33 +194,39 @@ Generator.prototype.askForCompass = function askForCompass() {
 Generator.prototype.askForLanguages = function askForLanguages() {
   var cb = this.async();
 
-  var prompts = [{
+  var availableLangsPrompts = [{
     type: 'checkbox',
-    name: 'languages',
+    name: 'langs',
     message: 'Which languages would you like to use?',
-    choices: [
-    {
-      value: 'en',
-      name: 'English',
-      checked: true
-    }, {
-      value: 'fr',
-      name: 'Français',
-      checked: false
-    }, {
-      value: 'pl',
-      name: 'Polski',
-      checked: false
+    choices: function(){
+      return LANGUAGES;
     }
-    ]
+  },{
+    type: "list",
+    name: 'defaultLang',
+    message: 'Which language should be default?',
+    when: function (response) {
+      return response.langs.length > 1;
+    },
+    choices: function(response){
+      var choices = [];
+      LANGUAGES.forEach(function(item){
+        if (response.langs.indexOf(item.value) >= 0){
+          choices.push(item);
+        }
+      });
+      return choices;
+    },
   }];
 
-  this.prompt(prompts, function (props) {
-    this.availableLanguages = props.languages;
+  this.prompt(availableLangsPrompts, function (props) {
+    this.langs = this._getLangsArray(props.langs);
 
-    for (var i = this.availableLanguages.length - 1; i >= 0; i--) {
-        this.template('app/langs/_lang.json', 'app/langs/lang-'+ this.availableLanguages[i] +'.json');
-    };
+    this.langs.forEach(function(item){
+      this.template('app/langs/_lang.json', 'app/langs/lang-'+ item +'.json');
+    }.bind(this));
+
+    this.defaultLang = props.defaultLang || this._getDefaultLang(this.langs);
 
     cb();
   }.bind(this));
@@ -225,6 +267,8 @@ Generator.prototype.packageFiles = function packageFiles() {
   this.template('root/_package.json', 'package.json');
   this.template('root/_Gruntfile.js', 'Gruntfile.js');
   this.template('root/README.md', 'README.md');
+
+  this.template('root/_config.default.js', 'app/scripts/common/config.default.js');
 };
 
 Generator.prototype._injectDependencies = function _injectDependencies() {
@@ -238,4 +282,30 @@ Generator.prototype._injectDependencies = function _injectDependencies() {
   } else {
     this.spawnCommand('grunt', ['wiredep']);
   }
+};
+
+// Returns default basing on LANGUAGES definition. 
+Generator.prototype._getLangsArray = function _getLangsArray(langs) {
+  if (langs && langs.length){
+    return langs;
+  }
+
+  for (var i = LANGUAGES.length - 1; i >= 0; i--) {
+    if (LANGUAGES[i].default){
+      return [LANGUAGES[i].value];
+    }
+  };
+
+};
+
+// Returns default basing on LANGUAGES definition. 
+// If default language is missing in langs array returns first.
+Generator.prototype._getDefaultLang = function _getDefaultLang(langs) {
+  for (var i = LANGUAGES.length - 1; i >= 0; i--) {
+    if (LANGUAGES[i].default && langs.indexOf(LANGUAGES[i])>=0){
+      return LANGUAGES[i].value;
+    }
+  };
+
+  return langs[0];
 };
