@@ -241,6 +241,17 @@ Generator.prototype.askForLanguages = function askForLanguages() {
   }.bind(this));
 };
 
+Generator.prototype.addModules = function addModules() {
+  var angMods = [
+    'TT-UI.Common',
+    'TT-UI.Common.Tpl'
+  ];
+
+  if (angMods.length) {
+    this.env.options.angularDeps = '\n    ' + angMods.join(',\n    ') + '\n  ';
+  }
+};
+
 Generator.prototype.readIndex = function readIndex() {
   this.ngRoute = this.env.options.ngRoute;
   this.indexFile = this.engine(this.read('app/index.html'), this);
