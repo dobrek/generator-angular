@@ -1,34 +1,55 @@
-# AngularJS generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-angular.svg?branch=master)](http://travis-ci.org/yeoman/generator-angular)
+# Tecnotree AngularJS generator
 
-> Yeoman generator for AngularJS - lets you quickly set up a project with sensible defaults and best practices.
+> Yeoman generator for AngularJS with TT-UI library - lets you quickly set up a project with sensible defaults and best practices.
 
-There are many starting points for building a new Angular single page app, in addition to this one. To see a comparison 
-of the popular options, have a look at 
-[this comparison](http://www.dancancro.com/comparison-of-angularjs-application-starters).
-
-[Roadmap for upcoming plans/features/fixes](https://github.com/yeoman/generator-angular/issues/553)
+This project is forked from yeoman/generator-angular(https://github.com/yeoman/generator-angular). See documentation for more details.
 
 ## Usage
 
 For step-by-step instructions on using Yeoman and this generator to build a TODO AngularJS application from scratch see [this tutorial.](http://yeoman.io/codelab/)
 
-Install `yo`, `grunt-cli`, `bower`, `generator-angular` and `generator-karma`:
+Install Node.js using the manual on [https://nodejs.org/](https://nodejs.org/)
+
+Run terminal to ensure if Node works properly. You should see version numbers in answer for following commands.
 ```
-npm install -g grunt-cli bower yo generator-karma generator-angular
+    node --version 
+    npm --version
 ```
 
-Make a new directory, and `cd` into it:
+Install tools: Grunt `grunt-cli`, Bower `bower` and Yeoman `yo` globally
 ```
-mkdir my-new-project && cd $_
+    npm install -g grunt-cli bower yo
+```
+
+Ensure whether everything works fine:
+```
+grunt --version
+bower --version
+yo --version
+```
+
+Install Angular Generator with TT UI Lib
+```
+npm install https://github.com/dobrek/generator-tecnotree-angular.git
+```
+
+Create directory for your new project and get into it
+```
+mkdir my-new-project && cd my-new-project
 ```
 
 Run `yo tecnotree-angular`, optionally passing an app name:
 ```
-yo tecnotree-angular [app-name]
+yo tecnotree-angular [MyNewApp]
 ```
 
-Run `grunt` for building and `grunt serve` for preview
+Choose whether you want to utilize Sass in your application, then select desired languages and default language. Or just hit enter to use default options (use Sass, language: en). 
 
+Wait several minutes till the installation process ends.
+
+Run project by typing `grunt serve`
+
+As soon as `Waiting...` info appears in terminal, open a web browser and navigate to [http://localhost:9000/](http://localhost:9000/)
 
 ## Generators
 
@@ -48,7 +69,7 @@ Available generators:
 * [tecnotree-angular:view](#view)
 
 ### App
-Sets up a new AngularJS app, generating all the boilerplate you need to get started. The app generator also optionally installs Bootstrap and additional AngularJS modules, such as angular-resource (installed by default).
+Sets up a new AngularJS app, generating all the boilerplate you need to get started.
 
 Example:
 ```bash
@@ -65,7 +86,7 @@ yo tecnotree-angular:route myroute
 
 Produces `app/scripts/controllers/myroute.js`:
 ```javascript
-angular.module('myMod').controller('MyrouteCtrl', function ($scope) {
+angular.module('myMod').controller('MyrouteCtrl', function () {
   // ...
 });
 ```
@@ -95,7 +116,7 @@ yo tecnotree-angular:controller user
 
 Produces `app/scripts/controllers/user.js`:
 ```javascript
-angular.module('myMod').controller('UserCtrl', function ($scope) {
+angular.module('myMod').controller('UserCtrl', function () {
   // ...
 });
 ```
@@ -295,47 +316,3 @@ Recent changes can be viewed on Github on the [Releases Page](https://github.com
 ## License
 
 [BSD license](http://opensource.org/licenses/bsd-license.php)
-
-
-## How to setup new Web based project with Angular and TT UI Lib in less than 10 steps
-
-1. Install Node.js using the instruction on [https://nodejs.org/](https://nodejs.org/)
-
-2. Run terminal and check if both commands works:
-   ```
-   node --version
-   npm --version
-   ```
-
-3. Install Yeoman ([http://yeoman.io/](http://yeoman.io/)), Grunt (http://gruntjs.com/) and Bower ([http://bower.io/](http://bower.io/)) tools:
-   ```
-   npm install -g bower grunt-cli yo
-   ```
-
-4. Check if all tools are working:
-   ```
-   bower --version
-   yo --version
-   grunt --version
-   ```
-
-5. Install Angular Generator with TT UI Lib
-   ```
-   npm install https://github.com/dobrek/generator-tecnotree-angular.git
-   ```
-
-6. Create directory for your new project and run setup
-   ```
-   mkdir my-new-project && cd my-new-project
-   yo tecnotree-angular MyNewProject
-   ```
-
-7. For first three question choose **"Y"** and **un-check** all additional angular modules using spacebar.
-Wait for the installation to finish. Can take 5+ minutes.
-
-8. Run project using command
-   ```
-   grunt serve
-   ```
-
-9. After `Waiting...` text appears in terminal open Web Browser and navigate to [http://localhost:9000/](http://localhost:9000/)
