@@ -201,7 +201,14 @@ Generator.prototype.askForLanguages = function askForLanguages() {
     name: 'langs',
     message: 'Which languages would you like to use?',
     choices: function(){
-      return LANGUAGES;
+      var langs = [];
+      LANGUAGES.forEach(function(item) {
+        if (item.default){
+          item.checked = true;
+        }
+        langs.push(item);
+      });
+      return langs;
     }
   },{
     type: "list",
