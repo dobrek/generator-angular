@@ -243,8 +243,8 @@ Generator.prototype.askForLanguages = function askForLanguages() {
 
 Generator.prototype.addModules = function addModules() {
   var angMods = [
-    'TT-UI.Common',
-    'TT-UI.Common.Tpl'
+    '\'TT-UI.Common\'',
+    '\'TT-UI.Common.Tpl\''
   ];
 
   if (angMods.length) {
