@@ -34,6 +34,8 @@ var Generator = module.exports = function Generator(args, options) {
   });
   this.env.options['app-suffix'] = this.options['app-suffix'];
   this.scriptAppName = this.appname + angularUtils.appName(this);
+     
+  this.env.options.ngRoute = true;
 
   args = ['main'];
 
@@ -181,10 +183,10 @@ Generator.prototype.askForCompass = function askForCompass() {
     default: true
   }], function (props) {
     this.compass = props.compass;
-    
+
     // Install Bootstrap by default
     this.bootstrap = true;
-    // Install Sass version of Bootstrap 
+    // Install Sass version of Bootstrap
     this.compassBootstrap = props.compass;
 
     cb();
@@ -284,7 +286,7 @@ Generator.prototype._injectDependencies = function _injectDependencies() {
   }
 };
 
-// Returns default basing on LANGUAGES definition. 
+// Returns default basing on LANGUAGES definition.
 Generator.prototype._getLangsArray = function _getLangsArray(langs) {
   if (langs && langs.length){
     return langs;
@@ -295,10 +297,9 @@ Generator.prototype._getLangsArray = function _getLangsArray(langs) {
       return [LANGUAGES[i].value];
     }
   };
-
 };
 
-// Returns default basing on LANGUAGES definition. 
+// Returns default basing on LANGUAGES definition.
 // If default language is missing in langs array returns first.
 Generator.prototype._getDefaultLang = function _getDefaultLang(langs) {
   for (var i = LANGUAGES.length - 1; i >= 0; i--) {
