@@ -1,10 +1,4 @@
-define([
-	'angular',
-	'window'
-], function(angular) {
-	'use strict';
-
-	return angular.module('TT-UI.Common.Config', [])
+angular.module('TT-UI.Common.Config', [])
 	.constant('CONFIG', {
 		INDEX_STATE: 'customers.home',
 
@@ -15,12 +9,11 @@ define([
 
 		BASE_URL: 'scripts/common/', // Slash at the end
 
-		LOCALE_PATH:   'data/', // Slash at the end
-		LOCALE_PREFIX: 'locale-',
+		LOCALE_PATH:   'langs/', // Slash at the end
+		LOCALE_PREFIX: 'lang-',
 		LOCALE_SUFFIX: '.json',
 		LOCALE_DEFAULT: '<%= defaultLang %>',
 		LOCALE_LIST:    {<% langs.forEach(function (item, idx) { if (idx!=0) {%>,<%}%>
 			<%= item %>:{lang:'<%= item %>'}<% }); %>
 		}
-	});
-});
+  });

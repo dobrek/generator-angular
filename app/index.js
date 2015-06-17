@@ -34,7 +34,7 @@ var Generator = module.exports = function Generator(args, options) {
   });
   this.env.options['app-suffix'] = this.options['app-suffix'];
   this.scriptAppName = this.appname + angularUtils.appName(this);
-     
+
   this.env.options.ngRoute = true;
 
   args = ['main'];
@@ -244,8 +244,13 @@ Generator.prototype.askForLanguages = function askForLanguages() {
 Generator.prototype.addModules = function addModules() {
   var angMods = [
     '\'TT-UI.Common\'',
-    '\'TT-UI.Common.Tpl\''
+    '\'TT-UI.Common.Tpl\'',
+    '\'TT-UI.Common.Config\''
   ];
+
+  if (this.env.options.ngRoute) {
+    angMods.push('\'ngRoute\'');
+  }
 
   if (angMods.length) {
     this.env.options.angularDeps = '\n    ' + angMods.join(',\n    ') + '\n  ';
@@ -288,7 +293,23 @@ Generator.prototype.packageFiles = function packageFiles() {
   this.template('root/_Gruntfile.js', 'Gruntfile.js');
   this.template('root/README.md', 'README.md');
 
-  this.template('root/_config.default.js', 'app/scripts/common/config.default.js');
+  this.template('root/_config.default.js', 'app/scripts/common/config.js');
+  this.directory('root/config','config');
+
+  var indexPath = path.join(this.appPath, 'index.html');
+  try {
+    angularUtils.rewriteFile({
+      file: indexPath,
+      needle: '<!-- endbuild -->',
+      splicable: [
+        '<script src="scripts/common/config.js"></script>'
+      ]
+    });
+  } catch (e) {
+    this.log.error(chalk.yellow(
+      '\nUnable to find ' + indexPath + '. Reference to common/config.js not added.\n'
+    ));
+  }
 };
 
 Generator.prototype._injectDependencies = function _injectDependencies() {
