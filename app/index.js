@@ -35,6 +35,8 @@ var Generator = module.exports = function Generator(args, options) {
   this.env.options['app-suffix'] = this.options['app-suffix'];
   this.scriptAppName = this.appname + angularUtils.appName(this);
 
+  this.mainCtrlName = this.scriptAppName + '.MainCtrl';
+
   this.env.options.ngRoute = true;
 
   args = ['main'];
@@ -275,7 +277,7 @@ Generator.prototype.appJs = function appJs() {
     html: this.indexFile,
     fileType: 'js',
     optimizedPath: 'scripts/scripts.js',
-    sourceFileList: ['scripts/app.js', 'scripts/controllers/main.js'],
+    sourceFileList: ['scripts/common/config.js', 'scripts/app.js', 'scripts/controllers/main.js'],
     searchPath: ['.tmp', this.appPath]
   });
 };
@@ -295,21 +297,6 @@ Generator.prototype.packageFiles = function packageFiles() {
 
   this.template('root/_config.default.js', 'app/scripts/common/config.js');
   this.directory('root/config','config');
-
-  var indexPath = path.join(this.appPath, 'index.html');
-  try {
-    angularUtils.rewriteFile({
-      file: indexPath,
-      needle: '<!-- endbuild -->',
-      splicable: [
-        '<script src="scripts/common/config.js"></script>'
-      ]
-    });
-  } catch (e) {
-    this.log.error(chalk.yellow(
-      '\nUnable to find ' + indexPath + '. Reference to common/config.js not added.\n'
-    ));
-  }
 };
 
 Generator.prototype._injectDependencies = function _injectDependencies() {
