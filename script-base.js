@@ -23,6 +23,7 @@ var Generator = module.exports = function Generator() {
   this.appname = this._.slugify(this._.humanize(this.appname));
 
   this.scriptAppName = bowerJson.moduleName || this._.camelize(this.appname) + angularUtils.appName(this);
+  this.mainCtrlName = this.scriptAppName + '.MainCtrl';
 
   this.cameledName = this.scriptAppName + '.' + this._.camelize(this.name);
   this.classedName = this.scriptAppName + '.' + this._.classify(this.name);
