@@ -1,6 +1,6 @@
 angular.module('TT-UI.Common.Config', [])
 	.constant('CONFIG', {
-		INDEX_STATE: 'customers.home',
+		INDEX_STATE: 'home',
 
 		DATE_FORMAT:       'dd/MM/yyyy',
 		DATETIME_FORMAT:   'dd/MM/yyyy HH:mm:ss',

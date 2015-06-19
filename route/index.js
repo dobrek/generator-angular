@@ -57,8 +57,9 @@ Generator.prototype.rewriteAppJs = function () {
       this.env.options.appPath,
       'scripts/app.' + (coffee ? 'coffee' : 'js')
     ),
-    needle: '.otherwise',
+    needle: '// needle:route-generator',
     splicable: [
+      "  url:'/" + this.uri + "'" + (coffee ? "" : ","),
       "  templateUrl: 'views/" + this.name.toLowerCase() + ".tpl.html'" + (coffee ? "" : "," ),
       "  controller: '" + this.classedName + "Ctrl'" + (coffee ? "" : ","),
       "  controllerAs: '" + this.name.toLowerCase() + "'"
@@ -66,10 +67,10 @@ Generator.prototype.rewriteAppJs = function () {
   };
 
   if (coffee) {
-    config.splicable.unshift(".when '/" + this.uri + "',");
+    config.splicable.unshift(".state '" + this.name.toLowerCase() + "',");
   }
   else {
-    config.splicable.unshift(".when('/" + this.uri + "', {");
+    config.splicable.unshift(".state('" + this.name.toLowerCase() + "', {");
     config.splicable.push("})");
   }
 
