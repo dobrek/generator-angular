@@ -30,7 +30,7 @@ yo --version
 
 Install Angular Generator with TT UI Lib
 ```
-npm install https://github.com/dobrek/generator-tecnotree-angular.git
+npm install http://git.tecnotree.com/tec_common/generator-tecnotree-angular.git
 ```
 
 Create directory for your new project and get into it
