@@ -1,18 +1,19 @@
-{<% var ngVer = "1.3.0" %>
+{<% var ngVer = "1.4.2" %>
   "name": "<%= _.slugify(_.humanize(appname)) %>",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "^<%= ngVer %>",
-    "angular-route": "^<%= ngVer %>"<% if (bootstrap) { %>,<% if (!compassBootstrap) { %>
+    "angular": "~<%= ngVer %>",
+    "angular-route": "~<%= ngVer %>",
+	"angular-ui-router": "0.2.14"<% if (bootstrap) { %>,<% if (!compassBootstrap) { %>
     "bootstrap": "^3.2.0"<% } else { %>
     "bootstrap-sass-official": "^3.2.0"<% } } %>,
-    "tecnotree-ui-library": "http://10.4.60.111:8085/tec_common/ui-lib.git#master"
+    "tecnotree-ui-library": "http://10.4.60.111:8085/tec_common/ui-lib.git#develop"
   },
   "resolutions": {
-    "angular": "~1.3.16"
+    "angular": "~<%= ngVer %>"
   },
   "devDependencies": {
-    "angular-mocks": "^<%= ngVer %>"
+    "angular-mocks": "~<%= ngVer %>"
   }<% if (appPath) { %>,
   "appPath": "<%= appPath %>"<% } %>,
   "moduleName": "<%= scriptAppName %>"
